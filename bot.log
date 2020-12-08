@@ -1,0 +1,108 @@
+2020-12-08 00:40:17,888  INFO :: Set up ShopBot
+2020-12-08 00:40:17,904  INFO :: Scrapy 2.4.1 started (bot: scrapybot)
+2020-12-08 00:40:17,904  INFO :: Versions: lxml 4.6.2.0, libxml2 2.9.10, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 20.3.0, Python 3.8.5 (default, Sep  3 2020, 21:29:08) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 20.0.0 (OpenSSL 1.1.1h  22 Sep 2020), cryptography 3.2.1, Platform Windows-10-10.0.18362-SP0
+2020-12-08 00:40:17,904  DEBUG :: Using reactor: twisted.internet.selectreactor.SelectReactor
+2020-12-08 00:40:17,912  INFO :: Overridden settings:
+{}
+2020-12-08 00:40:17,928  INFO :: Telnet Password: 1041a5f56b9423d2
+2020-12-08 00:40:17,952  INFO :: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2020-12-08 00:40:18,216  INFO :: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2020-12-08 00:40:18,216  INFO :: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2020-12-08 00:40:18,216  INFO :: Enabled item pipelines:
+[]
+2020-12-08 00:40:18,216  INFO :: Spider opened
+2020-12-08 00:40:18,224  INFO :: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2020-12-08 00:40:18,224  INFO :: Telnet console listening on 127.0.0.1:6023
+2020-12-08 00:40:18,224  INFO :: Starting ShopBot
+2020-12-08 00:40:18,272  ERROR :: Error while obtaining start requests
+Traceback (most recent call last):
+  File "C:\Users\brand\anaconda3\envs\ShopBot\lib\site-packages\scrapy\core\engine.py", line 129, in _next_request
+    request = next(slot.start_requests)
+  File "C:\Users\brand\anaconda3\envs\ShopBot\lib\site-packages\scrapy\spiders\__init__.py", line 77, in start_requests
+    yield Request(url, dont_filter=True)
+  File "C:\Users\brand\anaconda3\envs\ShopBot\lib\site-packages\scrapy\http\request\__init__.py", line 25, in __init__
+    self._set_url(url)
+  File "C:\Users\brand\anaconda3\envs\ShopBot\lib\site-packages\scrapy\http\request\__init__.py", line 73, in _set_url
+    raise ValueError(f'Missing scheme in request url: {self._url}')
+ValueError: Missing scheme in request url: bestbuy.com/site/amd-ryzen-7-5800x-4th-gen-8-core-16-threads-unlocked-desktop-processor-without-cooler/6439000.p?skuId=6439000
+2020-12-08 00:40:18,856  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402> (referer: None)
+2020-12-08 00:40:18,904  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442> (referer: None)
+2020-12-08 00:40:18,912  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943> (referer: None)
+2020-12-08 00:40:18,920  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440> (referer: None)
+2020-12-08 00:40:18,968  INFO :: "RTX 3060" is Out of Stock.
+2020-12-08 00:40:27,021  INFO :: "RTX 3070" is Out of Stock.
+2020-12-08 00:40:35,060  INFO :: "Ryzen 5600x" is Out of Stock.
+2020-12-08 00:40:43,086  INFO :: "RTX 3080" is Out of Stock.
+2020-12-08 00:40:51,101  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402)
+2020-12-08 00:40:51,234  INFO :: "RTX 3060" is Out of Stock.
+2020-12-08 00:40:59,249  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943> (referer: https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943)
+2020-12-08 00:40:59,264  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442)
+2020-12-08 00:40:59,264  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440)
+2020-12-08 00:40:59,387  INFO :: "Ryzen 5600x" is Out of Stock.
+2020-12-08 00:41:07,392  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402)
+2020-12-08 00:41:07,431  INFO :: "RTX 3070" is Out of Stock.
+2020-12-08 00:41:15,454  INFO :: "RTX 3080" is Out of Stock.
+2020-12-08 00:41:23,479  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943> (referer: https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943)
+2020-12-08 00:41:23,479  INFO :: Crawled 10 pages (at 10 pages/min), scraped 0 items (at 0 items/min)
+2020-12-08 00:41:23,495  INFO :: "RTX 3060" is Out of Stock.
+2020-12-08 00:41:31,511  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440)
+2020-12-08 00:41:31,527  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442)
+2020-12-08 00:41:31,549  INFO :: "Ryzen 5600x" is Out of Stock.
+2020-12-08 00:41:39,576  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402)
+2020-12-08 00:41:39,598  INFO :: "RTX 3080" is Out of Stock.
+2020-12-08 00:41:47,636  INFO :: "RTX 3070" is Out of Stock.
+2020-12-08 00:41:55,645  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943> (referer: https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943)
+2020-12-08 00:41:55,689  INFO :: "RTX 3060" is Out of Stock.
+2020-12-08 00:42:03,706  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442)
+2020-12-08 00:42:03,714  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440)
+2020-12-08 00:42:03,734  INFO :: "Ryzen 5600x" is Out of Stock.
+2020-12-08 00:42:11,765  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402)
+2020-12-08 00:42:11,805  INFO :: "RTX 3070" is Out of Stock.
+2020-12-08 00:42:19,835  INFO :: "RTX 3080" is Out of Stock.
+2020-12-08 00:42:27,836  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943> (referer: https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943)
+2020-12-08 00:42:27,836  INFO :: Crawled 18 pages (at 8 pages/min), scraped 0 items (at 0 items/min)
+2020-12-08 00:42:27,890  INFO :: "RTX 3060" is Out of Stock.
+2020-12-08 00:42:35,915  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440)
+2020-12-08 00:42:35,931  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442)
+2020-12-08 00:42:35,947  INFO :: "Ryzen 5600x" is Out of Stock.
+2020-12-08 00:42:43,970  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402)
+2020-12-08 00:42:43,994  INFO :: "RTX 3080" is Out of Stock.
+2020-12-08 00:42:52,046  INFO :: "RTX 3070" is Out of Stock.
+2020-12-08 00:43:00,064  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943> (referer: https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943)
+2020-12-08 00:43:00,095  INFO :: "RTX 3060" is Out of Stock.
+2020-12-08 00:43:08,140  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442)
+2020-12-08 00:43:08,155  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440)
+2020-12-08 00:43:08,171  INFO :: "Ryzen 5600x" is Out of Stock.
+2020-12-08 00:43:16,228  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402)
+2020-12-08 00:43:16,263  INFO :: "RTX 3070" is Out of Stock.
+2020-12-08 00:43:24,302  INFO :: "RTX 3080" is Out of Stock.
+2020-12-08 00:43:32,304  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943> (referer: https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943)
+2020-12-08 00:43:32,304  INFO :: Crawled 26 pages (at 8 pages/min), scraped 0 items (at 0 items/min)
+2020-12-08 00:43:32,351  INFO :: "RTX 3060" is Out of Stock.
+2020-12-08 00:43:40,372  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3080-10gb-gddr6x-pci-express-4-0-graphics-card-titanium-and-black/6429440.p?skuId=6429440)
+2020-12-08 00:43:40,372  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3070-8gb-gddr6-pci-express-4-0-graphics-card-dark-platinum-and-black/6429442.p?skuId=6429442)
+2020-12-08 00:43:40,403  INFO :: "Ryzen 5600x" is Out of Stock.
+2020-12-08 00:43:48,427  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402> (referer: https://www.bestbuy.com/site/nvidia-geforce-rtx-3060-ti-8gb-gddr6-pci-express-4-0-graphics-card-steel-and-black/6439402.p?skuId=6439402)
+2020-12-08 00:43:48,465  INFO :: "RTX 3080" is Out of Stock.
+2020-12-08 00:43:56,494  INFO :: "RTX 3070" is Out of Stock.
+2020-12-08 00:44:04,519  DEBUG :: Crawled (200) <GET https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943> (referer: https://www.bestbuy.com/site/amd-ryzen-5-5600x-4th-gen-6-core-12-threads-unlocked-desktop-processor-with-wraith-stealth-cooler/6438943.p?skuId=6438943)
+2020-12-08 00:44:04,565  INFO :: "RTX 3060" is Out of Stock.
