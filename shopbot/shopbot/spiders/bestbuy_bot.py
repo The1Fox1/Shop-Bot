@@ -8,6 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import logging
+import socket
 
 # Set up logging
 log = logging.getLogger("Best Buy")
@@ -17,7 +18,7 @@ log.addHandler(handler)
 log.setLevel(logging.INFO)
 
 # Helper
-def getproductname(s):
+def get_product_name(s):
     if "RTX" in s.upper():
         if "3080" in s:
             return "RTX 3080"
@@ -55,10 +56,10 @@ class BestbuySpider(scrapy.Spider):
    ]
 
    def parse(self, response):
-
        # Finding Product Status.
        try:
-           productName = getproductname(response.request.url)
+           deviceName = socket.gethostname() # Grab device name to determine directory settings
+           productName = get_product_name(response.request.url)
            product = response.xpath(
                "//*[@class='btn btn-primary btn-lg btn-block btn-leading-ficon add-to-cart-button']")
            if product:
@@ -73,8 +74,13 @@ class BestbuySpider(scrapy.Spider):
            log.info(f"Found {productName} to add to cart.")
 
            # Booting WebDriver
-           profile = webdriver.FirefoxProfile(r'C:\Users\brand\AppData\Roaming\Mozilla\Firefox\Profiles\hwhwzqvw.default')
-           driver = webdriver.Firefox(profile, executable_path=r'G:\Users\brand\webdrivers\geckodriver.exe')
+           profilePath = r"C:\Users\brand\AppData\Roaming\Mozilla\Firefox\Profiles"
+           profilePath += r"\oy8a68ov.default" if ("DELTA" not in deviceName.upper()) else r"\hwhwzqvw.default"
+           driverPath = "C:" if ("DELTA" not in deviceName.upper()) else "G:"
+           driverPath += r'\Users\brand\webdrivers\geckodriver.exe'
+
+           profile = webdriver.FirefoxProfile(profilePath)
+           driver = webdriver.Firefox(firefox_profile=profile, executable_path=driverPath)
 
            # options = webdriver.ChromeOptions()
            # options.add_argument(r'user-data-dir=C:\Users\brand\AppData\Local\Google\Chrome\User Data')
@@ -143,7 +149,7 @@ class BestbuySpider(scrapy.Spider):
                driver.find_element_by_id('payment.billingAddress.city').send_keys('San Pedro')
                driver.find_element_by_id('payment.billingAddress.zipcode').send_keys('90731')
                billstatedropdown = Select(driver.find_element_by_id("payment.billingAddress.state"))
-               billstatedropdown.select_by_visible_text("CA");
+               billstatedropdown.select_by_visible_text("CA")
 
            # ARE YOU READY TO BUY?
            #log.info(f"Buying {productName}.")

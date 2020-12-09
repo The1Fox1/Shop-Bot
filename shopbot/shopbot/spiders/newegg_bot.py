@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import logging
+import socket
 
 # Set up logging
 log = logging.getLogger("Newegg")
@@ -16,7 +17,7 @@ log.addHandler(handler)
 log.setLevel(logging.INFO)
 
 # Helper
-def getproductname(s):
+def get_product_name(s):
     if "RTX" in s.upper():
         if "3080" in s:
             return "RTX 3080"
@@ -55,7 +56,8 @@ class NeweggSpider(scrapy.Spider):
 
        # Finding Product Status.
        try:
-           productName = getproductname(response.request.url)
+           deviceName = socket.gethostname()  # Grab device name to determine directory settings
+           productName = get_product_name(response.request.url)
            product = response.xpath(
                ".//*[@class='btn btn-primary btn-wide']")
            if product:
@@ -70,9 +72,17 @@ class NeweggSpider(scrapy.Spider):
            log.info(f"Found {productName} to add to cart.")
 
            # Booting WebDriver.
-           profile = webdriver.ChromeOptions()
-           profile.add_argument(r'user-data-dir=C:\Users\brand\AppData\Local\Google\Chrome\User Data\Default')
-           driver = webdriver.Chrome(options=profile, executable_path='C:\Program Files (x86)\Google\Chrome\Application\chrome.exe')
+           profilePath = r"C:\Users\brand\AppData\Roaming\Mozilla\Firefox\Profiles"
+           profilePath += r"\oy8a68ov.default" if ("DELTA" not in deviceName.upper()) else r"\hwhwzqvw.default"
+           driverPath = "C:" if ("DELTA" not in deviceName.upper()) else "G:"
+           driverPath += r'\Users\brand\webdrivers\geckodriver.exe'
+
+           profile = webdriver.FirefoxProfile(profilePath)
+           driver = webdriver.Firefox(firefox_profile=profile, executable_path=driverPath)
+
+           # options = webdriver.ChromeOptions()
+           # options.add_argument(r'user-data-dir=C:\Users\brand\AppData\Local\Google\Chrome\User Data')
+           # driver = webdriver.Chrome(chrome_options=options, executable_path=r'G:\Users\brand\webdrivers\chromedriver.exe')
 
            # Starting Webpage.
            driver.get(response.url)
