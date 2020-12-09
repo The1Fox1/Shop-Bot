@@ -1,48 +1,19 @@
 import scrapy
 import time
-from selenium import webdriver
 from scrapy.http import Request
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-import logging
-import socket
+from .spider_helper import SpiderHelper
 
 # Set up logging
-log = logging.getLogger("Newegg")
-handler = logging.FileHandler("bot.log")
-handler.setFormatter(logging.Formatter('%(asctime)s  %(levelname)s :: %(message)s'))
-log.addHandler(handler)
-log.setLevel(logging.INFO)
-
-# Helper
-def get_product_name(s):
-    if "RTX" in s.upper():
-        if "3080" in s:
-            return "RTX 3080"
-        elif "3070" in s:
-            return "RTX 3070"
-        elif "3060" in s:
-            return "RTX 3060"
-        else:
-            return "Unkown Nvidia RTX"
-    elif "RYZEN" in s:
-        if "5900" in s:
-            return "Ryzen 9 5900x"
-        elif "5800" in s:
-            return "Ryzen 7 5800x"
-        elif "5600" in s:
-            return "Ryzen 5 5600x"
-        else:
-            return "Unknown AMD Ryzen"
-    return "Unkown"
+log = SpiderHelper.get_logger(name="Newegg")
 
 # Definition
 class NeweggSpider(scrapy.Spider):
    name = "newegg"
-   USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) " \
-                "Chrome/43.0.2357.130 Safari/537.36 "
+   USER_AGENT = SpiderHelper.default_user_agent()
    # Enter Your Product URL Here.
    start_urls = ["https://www.newegg.com/unitek-y-p527/p/0FB-02C2-00001?Item=9SIA2BPB8J5199&cm_sp=Dailydeal_SS-_-9SIA2BPB8J5199-_-12082020" #testURL
                 #"https://www.newegg.com/amd-ryzen-5-5600x/p/N82E16819113666?Item=N82E16819113666&Tpk=19-113-666",
@@ -50,14 +21,12 @@ class NeweggSpider(scrapy.Spider):
                  #"https://www.newegg.com/amd-ryzen-9-5900x/p/N82E16819113664",
                  #"https://www.newegg.com/asus-geforce-rtx-3070-ko-rtx3070-o8g-gamin/p/N82E16814126466",
                  #"https://www.newegg.com/asus-geforce-rtx-3080-tuf-rtx3080-o10g-gaming/p/N82E16814126452"
-            ]
+    ]
 
    def parse(self, response):
-
-       # Finding Product Status.
+       # Finding Product Status From Scraping.
        try:
-           deviceName = socket.gethostname()  # Grab device name to determine directory settings
-           productName = get_product_name(response.request.url)
+           productName = SpiderHelper.get_product_name(response.request.url)
            product = response.xpath(
                ".//*[@class='btn btn-primary btn-wide']")
            if product:
@@ -68,21 +37,12 @@ class NeweggSpider(scrapy.Spider):
            log.error(NoSuchElementException)
            pass
 
+       # Start selenium driver
        if product:
            log.info(f"Found {productName} to add to cart.")
 
            # Booting WebDriver.
-           profilePath = r"C:\Users\brand\AppData\Roaming\Mozilla\Firefox\Profiles"
-           profilePath += r"\oy8a68ov.default" if ("DELTA" not in deviceName.upper()) else r"\hwhwzqvw.default"
-           driverPath = "C:" if ("DELTA" not in deviceName.upper()) else "G:"
-           driverPath += r'\Users\brand\webdrivers\geckodriver.exe'
-
-           profile = webdriver.FirefoxProfile(profilePath)
-           driver = webdriver.Firefox(firefox_profile=profile, executable_path=driverPath)
-
-           # options = webdriver.ChromeOptions()
-           # options.add_argument(r'user-data-dir=C:\Users\brand\AppData\Local\Google\Chrome\User Data')
-           # driver = webdriver.Chrome(chrome_options=options, executable_path=r'G:\Users\brand\webdrivers\chromedriver.exe')
+           driver = SpiderHelper.get_driver()
 
            # Starting Webpage.
            driver.get(response.url)

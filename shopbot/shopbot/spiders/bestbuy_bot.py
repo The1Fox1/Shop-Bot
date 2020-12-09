@@ -7,43 +7,16 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-import logging
+from .spider_helper import SpiderHelper
 import socket
 
 # Set up logging
-log = logging.getLogger("Best Buy")
-handler = logging.FileHandler("bot.log")
-handler.setFormatter(logging.Formatter('%(asctime)s  %(levelname)s :: %(message)s'))
-log.addHandler(handler)
-log.setLevel(logging.INFO)
-
-# Helper
-def get_product_name(s):
-    if "RTX" in s.upper():
-        if "3080" in s:
-            return "RTX 3080"
-        elif "3070" in s:
-            return "RTX 3070"
-        elif "3060" in s:
-            return "RTX 3060"
-        else:
-            return "Unkown Nvidia RTX"
-    elif "RYZEN" in s:
-        if "5900" in s:
-            return "Ryzen 9 5900x"
-        elif "5800" in s:
-            return "Ryzen 7 5800x"
-        elif "5600" in s:
-            return "Ryzen 5 5600x"
-        else:
-            return "Unknown AMD Ryzen"
-    return "Unkown"
+log = SpiderHelper.get_logger(name="Best Buy")
 
 # Definition
 class BestbuySpider(scrapy.Spider):
    name = "bestbuy"
-   USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) " \
-                "Chrome/43.0.2357.130 Safari/537.36 "
+   USER_AGENT = SpiderHelper.default_user_agent()
    # Enter Your Product URL Here.
    start_urls = [
        "https://www.bestbuy.com/site/marvels-spider-man-miles-morales-standard-launch-edition-playstation-5/6430146.p?skuId=6430146" #TEST URL
@@ -59,7 +32,7 @@ class BestbuySpider(scrapy.Spider):
        # Finding Product Status.
        try:
            deviceName = socket.gethostname() # Grab device name to determine directory settings
-           productName = get_product_name(response.request.url)
+           productName = SpiderHelper.get_product_name(response.request.url)
            product = response.xpath(
                "//*[@class='btn btn-primary btn-lg btn-block btn-leading-ficon add-to-cart-button']")
            if product:
@@ -74,18 +47,7 @@ class BestbuySpider(scrapy.Spider):
            log.info(f"Found {productName} to add to cart.")
 
            # Booting WebDriver
-           profilePath = r"C:\Users\brand\AppData\Roaming\Mozilla\Firefox\Profiles"
-           profilePath += r"\oy8a68ov.default" if ("DELTA" not in deviceName.upper()) else r"\hwhwzqvw.default"
-           driverPath = "C:" if ("DELTA" not in deviceName.upper()) else "G:"
-           driverPath += r'\Users\brand\webdrivers\geckodriver.exe'
-
-           profile = webdriver.FirefoxProfile(profilePath)
-           driver = webdriver.Firefox(firefox_profile=profile, executable_path=driverPath)
-
-           # options = webdriver.ChromeOptions()
-           # options.add_argument(r'user-data-dir=C:\Users\brand\AppData\Local\Google\Chrome\User Data')
-           # driver = webdriver.Chrome(chrome_options=options, executable_path=r'G:\Users\brand\webdrivers\chromedriver.exe')
-
+           driver = SpiderHelper.get_driver()
            wait = WebDriverWait(driver, 15)
 
            # Starting Webpage.
