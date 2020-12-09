@@ -1,22 +1,22 @@
 from scrapy.crawler import CrawlerProcess
-from shopbot.spiders import bestbuybot
+from shopbot.shopbot.spiders import bestbuy_bot, newegg_bot
 import logging
 
 # Set up logging
 logging.basicConfig(
-    filename='bot.log',
+    filename='app.log',
     format='%(asctime)s  %(levelname)s :: %(message)s',
     level=logging.INFO
 )
-logger = logging.getLogger("ShopBot")
+logger = logging.getLogger("Shop-Bot")
 
 # Set Up Process
-logger.info("Set up ShopBot")
+logger.info("Set up Shop-Bot")
 process = CrawlerProcess()
-process.crawl(bestbuybot.BestbuySpider)
-# process.crawl(neweggbot.NeweggSpider)
+#process.crawl(bestbuy_bot.BestbuySpider)
+process.crawl(newegg_bot.NeweggSpider)
 
 # RUN
-logger.info("Starting ShopBot")
+logger.info("Starting Shop-Bot")
 process.start()  # the script will block here until all crawling jobs are finished
-logger.info("ShopBot Finished..........")
+logger.info("Shop-Bot Finished..........")
