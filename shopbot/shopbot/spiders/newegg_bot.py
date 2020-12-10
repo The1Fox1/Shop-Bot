@@ -15,7 +15,7 @@ class NeweggSpider(scrapy.Spider):
    name = "newegg"
    USER_AGENT = SpiderHelper.default_user_agent()
    # Enter Your Product URL Here.
-   start_urls = ["https://www.newegg.com/unitek-y-p527/p/0FB-02C2-00001?Item=9SIA2BPB8J5199&cm_sp=Dailydeal_SS-_-9SIA2BPB8J5199-_-12082020" #testURL
+   start_urls = ["https://www.newegg.com/lenovo-65dekcc1us-22-full-hd/p/0JC-0006-00TM2?Item=9SIAHRC8PH9971&cm_sp=homepage_dailydeals-_-p2_9SIAHRC8PH9971-_-12092020" #testURL
                 #"https://www.newegg.com/amd-ryzen-5-5600x/p/N82E16819113666?Item=N82E16819113666&Tpk=19-113-666",
                 # "https://www.newegg.com/amd-ryzen-7-5800x/p/N82E16819113665",
                  #"https://www.newegg.com/amd-ryzen-9-5900x/p/N82E16819113664",
@@ -43,16 +43,19 @@ class NeweggSpider(scrapy.Spider):
 
            # Booting WebDriver.
            driver = SpiderHelper.get_driver()
+           wait = WebDriverWait(driver, 15)
 
            # Starting Webpage.
            driver.get(response.url)
-           time.sleep(3)
+           wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[@class='btn btn-primary btn-wide']")))
 
            # Click Add to Cart.
            log.info("Clicking Add To Cart Button.")
            driver.find_element_by_xpath(
                ".//*[@class='btn btn-primary btn-wide']").click()
-           time.sleep(5)
+           time.sleep(2)
+           if len(driver.find_elements_by_xpath("//button[contains(text(), 'not interested')]")) != 0:
+               driver.find_elements_by_xpath("//button[contains(text(), 'not interested')]").click()
 
            # Click Cart.
            log.info("Going to Shopping Cart.")
@@ -61,13 +64,13 @@ class NeweggSpider(scrapy.Spider):
 
            # Click Check-out Button.
            log.info("Clicking Checkout Button.")
+           if len(driver.find_elements_by_xpath("//button[contains(text(), 'not interested')]")) != 0:
+               driver.find_elements_by_xpath("//button[contains(text(), 'not interested')]").click()
            driver.find_element_by_xpath(".//*[@class='btn btn-primary btn-wide']").click()
 
            # Giving Website Time To Login.
            log.info("Giving Website Time To Login..")
-           wait = WebDriverWait(driver, 10)
-           wait.until(EC.presence_of_element_located((By.XPATH, "//*[@id='signInSubmit']")))
-           time.sleep(3)
+           wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='signInSubmit']")))
 
            # ARE YOU READY TO BUY?
            log.info(f"Buying {productName}.")
@@ -77,7 +80,7 @@ class NeweggSpider(scrapy.Spider):
            driver.find_elements_by_xpath(".//*[@class='btn btn-primary checkout-step-action-done layout-quarter']")[1].click()
 
            log.info("Bot has Completed Checkout.")
-           time.sleep(18000)
+           time.sleep(180000)
 
        else:
            log.info("Retrying Bot In 15 Seconds.")
